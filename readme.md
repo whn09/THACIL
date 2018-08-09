@@ -45,5 +45,3 @@ Some implementations consult the [ATRank](https://github.com/jinze1994/ATRank), 
 
 Last Update Date: August 7, 2018
 
-
-fzq5
