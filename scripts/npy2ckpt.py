@@ -23,7 +23,7 @@ def npy2ckpt(npy_path, ckpt_path):
         trainable=False,
         name='train_cover_image_feature'
     )
-    emb_ph = tf.placeholder(tf.float32, feature.shape)
+    emb_ph = tf.placeholder(tf.float16, feature.shape)
     emb_init = W.assign(emb_ph)
     tf.add_to_collection('param', W)
 
