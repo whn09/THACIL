@@ -16,9 +16,9 @@ class Config:
     REG = 0.00005
     DROPOUT = 0.8
 
-    DATA_DIR = '../data/input'
-    OUT_DIR = '../data/output'
-    RESTORE_MODEL_DIR = '../data/input'
+    DATA_DIR = '../../dataset/MicroVideo-1.7M'
+    OUT_DIR = '../../dataset/MicroVideo-1.7M'
+    RESTORE_MODEL_DIR = '../../dataset/MicroVideo-1.7M'
     OPTIMIZER = 'adam'
 
     NEG_RATIO = 1.0

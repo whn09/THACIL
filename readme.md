@@ -22,22 +22,22 @@ This repo is our implementation for paper: Temporal Hierarchical Attention at Ca
     - Convert `train_cover_iamge_feature.npy` to `train_cover_image_feature.ckpt`:
         ```
         cd scripts
-        python npy2ckpt.py --npy-path ../../data/input/train_cover_image_feature.npy --ckpt-path ../../data/input/
+        python npy2ckpt.py --npy-path ../../dataset/MicroVideo-1.7M/train_cover_image_feature.npy --ckpt-path ../../dataset/MicroVideo-1.7M/
         ```
     - Generate `user_click_ids.npy`:
         ```
-        python generate_data.py --train-data-path ../../data/input/train_data.csv --save-path ../../data/input/
+        python generate_data.py --train-data-path ../../dataset/MicroVideo-1.7M/train_data.csv --save-path ../../dataset/MicroVideo-1.7M/
         ```
 ### Training and Evaluation
 - Training
 ```
 cd src
-python launcher.py  --phase train
+python launcher.py --phase train
 ```
 - Evaluation
 ```
 cd src
-python launcher.py  --phase test
+python launcher.py --phase test
 ```
 
 ## Acknowledgements
