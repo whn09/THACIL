@@ -17,7 +17,7 @@ from tqdm import tqdm
 def read_data(path):
     data = []
     with open(path, 'r') as reader:
-        reader.readline()
+        #reader.readline()
         for line in tqdm(reader):
             lines = line.strip('\n').split(',')
             items = [int(i) for i in lines]
