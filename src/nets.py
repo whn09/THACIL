@@ -13,7 +13,7 @@ import tensorflow as tf
 
 def var_init(name, shape, initializer=tf.contrib.layers.xavier_initializer(),
              trainable=True):
-    with tf.device('/cpu'):  # /gpu:0
+    with tf.device('/gpu:0'):  # /gpu:0
         var = tf.get_variable(
             name=name,
             shape=shape,
