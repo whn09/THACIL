@@ -199,10 +199,11 @@ class Model(object):
         self.lr_ph = tf.placeholder(tf.float32, shape=())
 
     def init_embedding(self):
-        category_embedding = var_init('category_embedding', [512, self.cate_dim], tf.random_normal_initializer())
-        self.category_embedding = tf.concat([category_embedding, tf.zeros((1, self.cate_dim))], axis=0)
-        train_cover_image_feature = var_init('train_cover_image_feature', shape=[984983, 512], trainable=False)
-        self.train_cover_image_feature = tf.concat([train_cover_image_feature, tf.zeros((1, 512))], axis=0)
+        with tf.device('/cpu'):  # /gpu:0
+            category_embedding = var_init('category_embedding', [512, self.cate_dim], tf.random_normal_initializer())
+            self.category_embedding = tf.concat([category_embedding, tf.zeros((1, self.cate_dim))], axis=0)
+            train_cover_image_feature = var_init('train_cover_image_feature', shape=[984983, 512], trainable=False)
+            self.train_cover_image_feature = tf.concat([train_cover_image_feature, tf.zeros((1, 512))], axis=0)
 
     def get_cate_emb(self, cate_ids):
         return tf.nn.embedding_lookup(self.category_embedding, cate_ids)
