@@ -38,7 +38,7 @@ class Model(object):
         self.init_embedding()
         self.set_placeholder()
         self.set_optimizer()
-        with tf.device('/gpu:0'):
+        with tf.device('/cpu'):  # /gpu:0
             with tf.variable_scope('THACIL'):
                 self.train_inference()
                 tf.get_variable_scope().reuse_variables()
