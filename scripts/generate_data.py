@@ -14,19 +14,19 @@ import argparse
 from tqdm import tqdm
 
 
-def read_data(path):
+def read_data(path, sep=','):
     data = []
     with open(path, 'r') as reader:
         #reader.readline()
         for line in tqdm(reader):
-            lines = line.strip('\n').split(',')
+            lines = line.strip('\n').split(sep)
             items = [int(i) for i in lines]
             data.append(items)
     return data
 
 
-def generate_user_click_ids_npy(train_data_path, save_path):
-    train_data = read_data(train_data_path)
+def generate_user_click_ids_npy(train_data_path, save_path, sep=','):
+    train_data = read_data(train_data_path, sep)
     user_click_ids = [[] for _ in range(10986)]
     for item in tqdm(train_data):
         if item[3] == 1:
@@ -40,9 +40,10 @@ def main(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('--train-data-path', dest='train_data_path', type=str, help='path of train_data.csv')
     parser.add_argument('--save-path', dest='save_path', type=str, help='path where to save user_click_ids.npy')
+    parser.add_argument('--sep', dest='sep', type=str, default=',', help='separator')
     params = parser.parse_args(args)
 
-    generate_user_click_ids_npy(params.train_data_path, params.save_path)
+    generate_user_click_ids_npy(params.train_data_path, params.save_path, params.sep)
 
 
 if __name__ == '__main__':

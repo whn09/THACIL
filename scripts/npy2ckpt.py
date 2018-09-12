@@ -19,7 +19,7 @@ def npy2ckpt(npy_path, ckpt_path):
 
     feature = np.load(npy_path)
     print('feature.shape:', feature.shape)
-    with tf.device('/cpu'):  # /gpu:0
+    with tf.device('/gpu:0'):  # /gpu:0
         W = tf.Variable(
             tf.constant(0.0, shape=feature.shape),
             trainable=False,

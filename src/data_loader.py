@@ -56,11 +56,11 @@ class DataLoader(object):
         self.epoch_train_data = epoch_train_data
         self.epoch_train_length = len(epoch_train_data)
 
-    def read_train_data(self, data_list_path):
+    def read_train_data(self, data_list_path, sep=','):
         logging.info('start read data list from disk')
         with open(data_list_path, 'r') as reader:
             # reader.readline()
-            raw_data = map(lambda x: x.strip('\n').split(','), reader.readlines())
+            raw_data = map(lambda x: x.strip('\n').split(sep), reader.readlines())
 
         data = [[[], []] for _ in range(10986)]
         for item in raw_data:

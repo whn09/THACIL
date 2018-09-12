@@ -27,6 +27,7 @@ This repo is our implementation for paper: Temporal Hierarchical Attention at Ca
     - Generate `user_click_ids.npy`:
         ```
         python generate_data.py --train-data-path ../../dataset/MicroVideo-1.7M/train_data.csv --save-path ../../dataset/MicroVideo-1.7M/
+        python generate_data.py --train-data-path ../../dataset/log_preprocess/train.txt --save-path ../../dataset/log_preprocess/ --sep \t
         ```
 ### Training and Evaluation
 - Training
