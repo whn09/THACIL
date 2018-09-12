@@ -14,7 +14,7 @@ import argparse
 from tqdm import tqdm
 
 
-def read_data(path, sep=','):
+def read_data(path, sep='\t'):
     data = []
     with open(path, 'r') as reader:
         #reader.readline()
@@ -25,7 +25,7 @@ def read_data(path, sep=','):
     return data
 
 
-def generate_user_click_ids_npy(train_data_path, save_path, sep=','):
+def generate_user_click_ids_npy(train_data_path, save_path, sep='\t'):
     train_data = read_data(train_data_path, sep)
     user_click_ids = [[] for _ in range(10986)]
     for item in tqdm(train_data):
@@ -40,7 +40,7 @@ def main(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('--train-data-path', dest='train_data_path', type=str, help='path of train_data.csv')
     parser.add_argument('--save-path', dest='save_path', type=str, help='path where to save user_click_ids.npy')
-    parser.add_argument('--sep', dest='sep', type=str, default=',', help='separator')
+    parser.add_argument('--sep', dest='sep', type=str, default='\t', help='separator')
     params = parser.parse_args(args)
 
     generate_user_click_ids_npy(params.train_data_path, params.save_path, params.sep)
