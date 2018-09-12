@@ -25,11 +25,11 @@ def read_data(path, sep='\t'):
     return data
 
 
-def generate_user_click_ids_npy(train_data_path, save_path, sep='\t'):
+def generate_user_click_ids_npy(train_data_path, save_path, sep='\t', click_score=1):
     train_data = read_data(train_data_path, sep)
     user_click_ids = [[] for _ in range(10986)]
     for item in tqdm(train_data):
-        if item[3] == 1:
+        if item[3] == click_score:
             user_click_ids[item[0]].append((item[1], item[2], item[-1]))
 
     sorted_user_click_ids = [sorted(item, key=lambda x: x[-1]) for item in user_click_ids]
@@ -41,9 +41,10 @@ def main(args):
     parser.add_argument('--train-data-path', dest='train_data_path', type=str, help='path of train_data.csv')
     parser.add_argument('--save-path', dest='save_path', type=str, help='path where to save user_click_ids.npy')
     parser.add_argument('--sep', dest='sep', type=str, default='\t', help='separator')
+    parser.add_argument('--click_score', dest='click_score', type=int, default=1, help='click score')
     params = parser.parse_args(args)
 
-    generate_user_click_ids_npy(params.train_data_path, params.save_path, params.sep)
+    generate_user_click_ids_npy(params.train_data_path, params.save_path, params.sep, params.click_score)
 
 
 if __name__ == '__main__':
