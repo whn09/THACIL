@@ -31,7 +31,7 @@ def load_number(filename):
         lines = fin.readlines()
         for line in lines:
             params = line.strip().split(' ')
-            content_id = params[1].split('/')[-1].split('_')[0]
+            content_id = params[1].split('/')[-1][:-10]
             if content_id in number_map:
                 print('content_id:', content_id, 'params[0]:', params[0], 'number_map[content_id]:', number_map[content_id])
             number_map[content_id] = int(params[0])
