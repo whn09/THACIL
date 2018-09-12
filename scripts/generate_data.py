@@ -44,7 +44,7 @@ def main(args):
     parser.add_argument('--click_score', dest='click_score', type=int, default=1, help='click score')
     params = parser.parse_args(args)
 
-    generate_user_click_ids_npy(params.train_data_path, params.save_path, params.sep, params.click_score)
+    generate_user_click_ids_npy(params.train_data_path, params.save_path, params.sep, int(params.click_score))
 
 
 if __name__ == '__main__':
