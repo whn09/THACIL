@@ -29,7 +29,12 @@ def read_data(path, sep='\t'):
 
 def generate_user_click_ids_npy(train_data_path, save_path, sep='\t', click_score=1):
     train_data = read_data(train_data_path, sep)
-    user_click_ids = [[] for _ in range(10986)]
+    max_user_id = 0
+    for item in tqdm(train_data):
+        if item[0] > max_user_id:
+            max_user_id = item[0]
+            
+    user_click_ids = [[] for _ in range(max_user_id+1)]
     for item in tqdm(train_data):
         if item[3] == click_score:
             user_click_ids[item[0]].append((item[1], item[2], item[-1]))
