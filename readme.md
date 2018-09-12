@@ -23,11 +23,13 @@ This repo is our implementation for paper: Temporal Hierarchical Attention at Ca
         ```
         cd scripts
         python npy2ckpt.py --npy-path ../../dataset/MicroVideo-1.7M/train_cover_image_feature.npy --ckpt-path ../../dataset/MicroVideo-1.7M/
+        python filter_funny_npy.py
+        python npy2ckpt.py --npy-path ../../dataset/log_preprocess/train_cover_image_feature.npy --ckpt-path ../../dataset/log_preprocess/
         ```
     - Generate `user_click_ids.npy`:
         ```
-        python generate_data.py --train-data-path ../../dataset/MicroVideo-1.7M/train_data.csv --save-path ../../dataset/MicroVideo-1.7M/
-        python generate_data.py --train-data-path ../../dataset/log_preprocess/train.txt --save-path ../../dataset/log_preprocess/ --sep \t
+        python generate_data.py --train-data-path ../../dataset/MicroVideo-1.7M/train_data.csv --save-path ../../dataset/MicroVideo-1.7M/ --sep ,
+        python generate_data.py --train-data-path ../../dataset/log_preprocess/train.txt --save-path ../../dataset/log_preprocess/ --click_score 2
         ```
 ### Training and Evaluation
 - Training
