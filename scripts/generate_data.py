@@ -21,6 +21,8 @@ def read_data(path, sep='\t'):
         for line in tqdm(reader):
             lines = line.strip('\n').split(sep)
             items = [int(i) for i in lines]
+            if len(items) == 4:  # for funny, insert cate_id
+                items.insert(2, 0)
             data.append(items)
     return data
 
@@ -44,6 +46,7 @@ def main(args):
     parser.add_argument('--click_score', dest='click_score', type=int, default=1, help='click score')
     params = parser.parse_args(args)
 
+    print('params:', params)
     generate_user_click_ids_npy(params.train_data_path, params.save_path, params.sep, int(params.click_score))
 
 
