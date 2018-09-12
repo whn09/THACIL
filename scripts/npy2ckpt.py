@@ -19,21 +19,20 @@ def npy2ckpt(npy_path, ckpt_path):
 
     feature = np.load(npy_path)
     print('feature.shape:', feature.shape)
-    with tf.device('/gpu:0'):  # /gpu:0
-        W = tf.Variable(
-            tf.constant(0.0, shape=feature.shape),
-            trainable=False,
-            name='train_cover_image_feature'
-        )
-        emb_ph = tf.placeholder(tf.float32, feature.shape)
-        emb_init = W.assign(emb_ph)
-        tf.add_to_collection('param', W)
+    W = tf.Variable(
+        tf.constant(0.0, shape=feature.shape),
+        trainable=False,
+        name='train_cover_image_feature'
+    )
+    emb_ph = tf.placeholder(tf.float32, feature.shape)
+    emb_init = W.assign(emb_ph)
+    tf.add_to_collection('param', W)
 
-        with tf.Session() as sess:
-            saver = tf.train.Saver(tf.get_collection('param'), write_version=saver_pb2.SaverDef.V1)
-            sess.run(tf.global_variables_initializer())
-            sess.run(emb_init, feed_dict={emb_ph: feature})
-            saver.save(sess, os.path.join(ckpt_path, 'train_cover_image_feature.ckpt'))
+    with tf.Session() as sess:
+        saver = tf.train.Saver(tf.get_collection('param'), write_version=saver_pb2.SaverDef.V1)
+        sess.run(tf.global_variables_initializer())
+        sess.run(emb_init, feed_dict={emb_ph: feature})
+        saver.save(sess, os.path.join(ckpt_path, 'train_cover_image_feature.ckpt'))
 
 
 def main(args):

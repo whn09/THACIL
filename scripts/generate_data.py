@@ -33,7 +33,7 @@ def generate_user_click_ids_npy(train_data_path, save_path, sep='\t', click_scor
     for item in tqdm(train_data):
         if item[0] > max_user_id:
             max_user_id = item[0]
-            
+
     user_click_ids = [[] for _ in range(max_user_id+1)]
     for item in tqdm(train_data):
         if item[3] == click_score:
